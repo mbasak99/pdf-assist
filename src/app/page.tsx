@@ -19,7 +19,7 @@ export default function Home() {
   };
 
   const onDocSuccess = (pdf: any) => {
-    setPgNum(pdf.numPages);
+    // setPgNum(pdf.numPages);
   };
 
   useEffect(() => {
@@ -44,21 +44,32 @@ export default function Home() {
         ) : (
           <div>
             <Document file={uploadedPDF} onLoadSuccess={onDocSuccess}>
-              <Page pageNumber={pgNum} />
+              <Page
+                pageNumber={pgNum}
+                renderTextLayer={false}
+                renderAnnotationLayer={false}
+              />
             </Document>
           </div>
         )}
-        <div className="flex flex-row gap-4">
-          <input
-            onSubmit={() => {
-              console.log("test");
-            }}
-            type="text"
-            name="Chat to Assistant"
-            id="pdf-chat"
-          />
-          <button type="submit">Submit</button>
-        </div>
+        {uploadedPDF ? (
+          <div className="flex flex-row gap-4 flex-end self-end text-black">
+            <input
+              title="Type here to ask questions"
+              onSubmit={() => {
+                console.log("test");
+              }}
+              type="text"
+              name="Chat to Assistant"
+              id="pdf-chat"
+              className="h-12 p-2 rounded-lg outline-none"
+              placeholder="Type here to get started!"
+            />
+            <button className="text-white" type="submit">
+              Submit
+            </button>
+          </div>
+        ) : null}
       </main>
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <b>PDF Assist</b>Made by Monark
