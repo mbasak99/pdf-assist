@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -29,11 +31,6 @@ export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-row gap-8 row-start-2 items-center sm:items-start">
-        {/* <div id="pdf-drop-zone" onDrop={pdfDropHandler}>
-          <p>
-            <i>Drag and drop PDF file here.</i>
-          </p>
-        </div> */}
         {!uploadedPDF ? (
           <FileUploader
             handleChange={pdfDropHandler}
@@ -54,7 +51,7 @@ export default function Home() {
         )}
         {uploadedPDF ? (
           <div className="flex flex-row gap-4 flex-end self-end text-black">
-            <input
+            {/* <input
               title="Type here to ask questions"
               onSubmit={() => {
                 console.log("test");
@@ -67,7 +64,17 @@ export default function Home() {
             />
             <button className="text-white" type="submit">
               Submit
-            </button>
+            </button> */}
+            {/* TODO: Chat Log Here */}
+            <Input type="text" placeholder="Enter your questions here" />
+            <Button
+              type="submit"
+              onClick={(event) => {
+                console.log(event);
+              }}
+            >
+              Send
+            </Button>
           </div>
         ) : null}
       </main>
