@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Toaster } from "@/components/ui/toaster";
 import { toast } from "@/hooks/use-toast";
 import { ChatHistory } from "@/types/chat";
@@ -57,11 +58,7 @@ export default function Home() {
             />
           </div>
         ) : (
-          <div
-            // animate={{ x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: "linear" }}
-            className="flex flex-col items-center gap-2"
-          >
+          <div className="flex flex-col items-center gap-2">
             <Document file={uploadedPDF} onLoadSuccess={onDocSuccess}>
               <Page
                 pageNumber={pgNum}
@@ -84,7 +81,7 @@ export default function Home() {
                 <Input
                   className="w-20 text-center"
                   type="text"
-                  value={pgNum ?? 1}
+                  value={pgNum}
                   onChange={(event: any) => {
                     console.log(event);
                     const userVal = Number(event.nativeEvent.data);
@@ -112,7 +109,8 @@ export default function Home() {
         {uploadedPDF ? (
           <div className="flex flex-row gap-4 flex-end self-end text-black">
             {/* TODO: Chat Log Here */}
-            <Input type="text" placeholder="Enter your questions here" />
+            {/* <ScrollArea className="flex flex-row gap-4"> */}
+            <Input type="text" placeholder="Enter your question here" />
             <Button
               type="submit"
               onClick={(event) => {
@@ -121,6 +119,7 @@ export default function Home() {
             >
               Send
             </Button>
+            {/* </ScrollArea> */}
           </div>
         ) : null}
       </main>
